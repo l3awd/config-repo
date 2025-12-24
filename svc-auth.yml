@@ -1,27 +1,33 @@
-# config-repo/svc-auth.yml
+server:
+  port: 8081
+
 spring:
   application:
     name: svc-auth
+
   datasource:
     url: jdbc:mysql://localhost:3306/auth?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: false
+    open-in-view: false
 
-# Eureka configuration for svc-auth
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info
-# No config-server or gateway-specific settings here; gateway routes are managed in api-gateway.yml
