@@ -13,27 +13,27 @@ spring:
           lower-case-service-id: true
       routes:
         - id: auth-service
-          uri: lb://SVC-AUTH
+            uri: lb://svc-auth
           predicates:
             - Path=/api/auth/**
 
         - id: menu-commandes-service
-          uri: lb://SVC-MENU-COMMANDES
+          uri: lb://svc-menu-commandes
           predicates:
             - Path=/api/menu/**,/api/commandes/**
 
         - id: cuisine-service
-          uri: lb://SVC-CUISINE
+          uri: lb://svc-cuisine
           predicates:
             - Path=/api/cuisine/**
 
         - id: inventaire-service
-          uri: lb://SVC-INVENTAIRE
+          uri: lb://svc-inventaire
           predicates:
             - Path=/api/inventaire/**
 
         - id: rh-service
-          uri: lb://SVC-RH
+          uri: lb://svc-rh
           predicates:
             - Path=/api/rh/**
 
