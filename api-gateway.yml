@@ -10,30 +10,31 @@ spring:
       discovery:
         locator:
           enabled: true
-          lower-case-service-id: true
+          lower-case-service-id: false
+
       routes:
         - id: auth-service
-            uri: lb://svc-auth
+          uri: lb://SVC-AUTH
           predicates:
             - Path=/api/auth/**
 
         - id: menu-commandes-service
-          uri: lb://svc-menu-commandes
+          uri: lb://SVC-MENU-COMMANDES
           predicates:
             - Path=/api/menu/**,/api/commandes/**
 
         - id: cuisine-service
-          uri: lb://svc-cuisine
+          uri: lb://SVC-CUISINE
           predicates:
             - Path=/api/cuisine/**
 
         - id: inventaire-service
-          uri: lb://svc-inventaire
+          uri: lb://SVC-INVENTAIRE
           predicates:
             - Path=/api/inventaire/**
 
         - id: rh-service
-          uri: lb://svc-rh
+          uri: lb://SVC-RH
           predicates:
             - Path=/api/rh/**
 
