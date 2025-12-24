@@ -7,8 +7,5 @@ spring:
   cloud:
     config:
       enabled: true
-  
-# Configuration commune à tous les microservices (optionnelle)
-spring:
   profiles:
     active: default
