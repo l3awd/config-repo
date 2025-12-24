@@ -1,44 +1,41 @@
-# config-repo/api-gateway.yml
-# Configuration centralisée de l'API Gateway
 server:
-  port: 8083 # Port d'exposition de la Gateway
+  port: 8083
 
 spring:
   application:
     name: api-gateway
+
   cloud:
-    config:
-      uri: http://localhost:9101 # URL du Config Server
-    discovery:
-      enabled: true
     gateway:
       discovery:
         locator:
-          enabled: true # Découverte dynamique via Eureka
+          enabled: true
           lower-case-service-id: true
       routes:
-        # Exemple de routage : chaque route correspond à un microservice
         - id: auth-service
           uri: lb://SVC-AUTH
           predicates:
             - Path=/api/auth/**
-        - id: menu-service
+
+        - id: menu-commandes-service
           uri: lb://SVC-MENU-COMMANDES
           predicates:
             - Path=/api/menu/**,/api/commandes/**
+
         - id: cuisine-service
           uri: lb://SVC-CUISINE
           predicates:
             - Path=/api/cuisine/**
+
         - id: inventaire-service
           uri: lb://SVC-INVENTAIRE
           predicates:
             - Path=/api/inventaire/**
+
         - id: rh-service
           uri: lb://SVC-RH
           predicates:
             - Path=/api/rh/**
-        # Ajoute d'autres routes selon les besoins du front-end
 
 eureka:
   client:
@@ -46,6 +43,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+
   instance:
     prefer-ip-address: true
 
